@@ -1,5 +1,5 @@
 let platform = document.images.namedItem = '../gallery/Platform.png'
-let background = document.images.namedItem = '../gallery/Background-game.png'
+let background = document.images.namedItem = '../gallery/Background-Game.png'
 let winingBox = document.images.namedItem = '../gallery/Mario-Wining-Box.jpg'
 
 console.log(platform);
