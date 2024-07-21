@@ -154,72 +154,6 @@ let platforms = [
 
     new Platform({ x: platformImage.width * 5 + 500, y: 350, image: platformImage })
 ]
-
-
-
-
-
-function init() {
-    platformImage = createImage(platform)
-
-    class GenricObject {
-        constructor({ x, y, image }) {
-            this.position = {
-                x,
-                y
-            }
-            this.image = image
-            this.width = image.width
-            this.height = image.height
-        }
-
-        draw() {
-            c.drawImage(this.image, this.position.x, this.position.y)
-        }
-    }
-
-
-
-    genricObject = [
-        new GenricObject({
-            x: 0, y: 0, image: createImage(background)
-        })]
-
-    function createImage(imageSrc) {
-        const image = new Image()
-        image.src = imageSrc
-        return image
-    }
-
-    console.log(platformImage);
-    console.log(platforms[1].y);
-    player = new Player()
-    platforms = [
-        new Platform({ x: -3, y: 470, image: platformImage }),
-
-        new Platform({ x: platformImage.width - 3, y: 470, image: platformImage }),
-
-        new Platform({ x: platformImage.width * 2 + 100, y: 470, image: platformImage }),
-
-        new Platform({ x: platformImage.width * 3 + 300, y: 470, image: platformImage }),
-
-        new Platform({ x: platformImage.width * 4 + 500, y: 470, image: platformImage }),
-
-        new Platform({ x: platformImage.width * 5 + 500, y: 470, image: platformImage }),
-
-        new Platform({ x: platformImage.width * 5 + 370, y: 350, image: winingBoxImage }),
-
-        new Platform({ x: platformImage.width * 5 + 500, y: 350, image: platformImage })
-    ]
-
-    scrollOffSet = 0
-}
-
-
-
-
-
-
 const keys = {
     right: {
         pressed: false
@@ -309,6 +243,72 @@ function animate() {
 }
 let scrollOffSetLeft = 0
 animate()
+
+
+
+
+function init() {
+    platformImage = createImage(platform)
+
+    class GenricObject {
+        constructor({ x, y, image }) {
+            this.position = {
+                x,
+                y
+            }
+            this.image = image
+            this.width = image.width
+            this.height = image.height
+        }
+
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y)
+        }
+    }
+
+
+
+    genricObject = [
+        new GenricObject({
+            x: 0, y: 0, image: createImage(background)
+        })]
+
+    function createImage(imageSrc) {
+        const image = new Image()
+        image.src = imageSrc
+        return image
+    }
+
+    console.log(platformImage);
+    console.log(platforms[1].y);
+    player = new Player()
+    platforms = [
+        new Platform({ x: -3, y: 470, image: platformImage }),
+
+        new Platform({ x: platformImage.width - 3, y: 470, image: platformImage }),
+
+        new Platform({ x: platformImage.width * 2 + 100, y: 470, image: platformImage }),
+
+        new Platform({ x: platformImage.width * 3 + 300, y: 470, image: platformImage }),
+
+        new Platform({ x: platformImage.width * 4 + 500, y: 470, image: platformImage }),
+
+        new Platform({ x: platformImage.width * 5 + 500, y: 470, image: platformImage }),
+
+        new Platform({ x: platformImage.width * 5 + 370, y: 350, image: winingBoxImage }),
+
+        new Platform({ x: platformImage.width * 5 + 500, y: 350, image: platformImage })
+    ]
+
+    scrollOffSet = 0
+}
+
+
+
+
+
+
+
 
 addEventListener('keydown', ({ key }) => {
 
