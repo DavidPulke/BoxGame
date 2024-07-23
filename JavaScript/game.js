@@ -242,9 +242,8 @@ function animate() {
     }
 }
 let scrollOffSetLeft = 0
-setTimeout(() => {
-    animate()
-}, 1000)
+animate()
+
 
 
 
