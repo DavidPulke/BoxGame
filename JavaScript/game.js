@@ -1,13 +1,13 @@
-let platform = document.images.namedItem = '../gallery/Platform.png'
-let background = document.images.namedItem = '../gallery/Background-Game.png'
-let winingBox = document.createElement('img');
-winingBox.src = '../gallery/Mario-Wining-Box.jpg'
+let platform = document.images.namedItem = './gallery/Platform.png'
+let background = document.images.namedItem = './gallery/Background-game.png'
+let winingBox = document.images.namedItem = './gallery/Mario-Wining-Box.jpg'
 
-console.log(platform);
-const canvas = document.querySelector("canvas");
-const c = canvas.getContext('2d');
-let winFlag = document.querySelector('.winFlag');
-let winButton = document.querySelector('.threeD-link');
+
+
+const canvas = document.querySelector("canvas")
+const c = canvas.getContext('2d')
+let winFlag = document.querySelector('.winFlag')
+let winButton = document.querySelector('.threeD-link')
 
 canvas.width = 1024;
 canvas.height = 576;
