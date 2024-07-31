@@ -1,3 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@media(max-width: 1020px) {
+    body #gameForPc {
+        display: none;
+    }
+
+    html #brake-point-info {
+        display: block;
+        width: 50%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        line-height: 1;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+    }
+}
+
+@media(max-height: 580px) {
+    body #gameForPc {
+        display: none;
+    }
+
+    html #brake-point-info {
+        display: block;
+        width: 50%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        line-height: 1;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+    }
+}
+
+
+
+#brake-point-info {
+
+    display: none;
+}
+
+#brake-point-info h1 {
+    font-size: 25pt;
+}
+
+#brake-point-info p {
+    font-size: 15pt;
+    font-weight: 400;
+}
+
+
+/* colors setup */
+.red {
+    color: red;
+}
+
+.blue {
+    color: rgb(32, 144, 236);
+}
+
+.white {
+    color: #fff;
+}
+
+.orange {
+    color: #ffc400;
+}
+
+.green {
+    color: #4CAF50;
+}
+
+/* body styling and dn all the parameters that i need */
 body {
     width: 100vw;
     overflow-x: hidden;
@@ -12,6 +91,201 @@ body {
     height: 100vh;
 }
 
+main {
+    width: 100vw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(81deg, rgba(0, 0, 0, 1) 0%, rgba(255, 10, 10, 08071603641456583) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+canvas {
+    display: none;
+}
+
+.title {
+    display: none;
+}
+
+
+
+body .settingsBtnBox {
+    display: none;
+}
+
+
+/* the forms styling sign up and login */
+.formContainer {
+    width: 350px;
+    height: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 40px #000;
+    border-radius: 13px;
+}
+
+
+form {
+    margin-top: 2rem;
+    width: 350px;
+    height: 200px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(1, 1fr);
+    line-height: 2;
+
+}
+
+.formContainer h1 {
+    margin-left: 140px;
+    font-family: Bebas Neue;
+}
+
+.formContainer input {
+    width: 200px;
+    height: 20px;
+    margin-left: 70px;
+    border: 2px solid #666;
+}
+
+.formContainer label {
+    margin-left: 70px;
+    color: #000;
+    font-size: 14pt;
+    margin-top: 0px;
+    font-weight: bolder;
+    font-family: cursive, Arial, Helvetica, sans-serif;
+    letter-spacing: 1.2px;
+}
+
+.formContainer button {
+    margin-left: 127px;
+    font-family: Bebas Neue;
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 14pt;
+    font-weight: bold;
+    width: 100px;
+    background: linear-gradient(25deg, #c2b1b1 20%, #ff4757 100%);
+    border: none;
+    margin-top: 9px;
+    padding: 5px 20px 5px;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+
+}
+
+.formContainer button:active {
+    scale: 0.9;
+}
+
+.formContainer input[type="checkbox"] {
+    position: absolute;
+    margin-left: 125px;
+    margin-top: 69px;
+}
+
+.formContainer span {
+    position: absolute;
+    padding-left: 105px;
+    padding-top: 70px;
+    font-weight: bold;
+    z-index: 0;
+}
+
+.old {
+    animation: fadeOut 2s ease-in;
+}
+
+.new {
+    animation: replace 3s ease-in;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes replace {
+    0% {
+        position: absolute;
+        top: 0;
+    }
+
+    100% {
+        top: 55%;
+    }
+}
+
+/* media for login and signup */
+@media(max-width: 375px) {
+    .formContainer {
+        width: 300px;
+    }
+
+    .old {
+        animation: none;
+    }
+
+    .new {
+        animation: none;
+    }
+
+
+    .formContainer h1 {
+        margin-left: 118px;
+    }
+
+    .formContainer input,
+    .formContainer label {
+        margin-left: 50px;
+    }
+
+    .formContainer button {
+        margin-left: 100px;
+    }
+
+    .formContainer input[type="checkbox"] {
+        margin-left: 95px;
+    }
+
+    .formContainer span {
+        padding-left: 75px;
+    }
+
+    .formContainer form {
+        width: 300px;
+    }
+}
+
+/* distance made styling */
+#distance {
+    top: 2px;
+    width: 300px;
+    position: absolute;
+    padding-right: 10px;
+    line-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+/* wining styling and all the small details on the screen */
 .winFlag {
     background-image: url(../gallery/victoryFlagImage.webp);
     background-size: contain;
@@ -21,13 +295,19 @@ body {
     height: 230px;
     animation: winFlag 2s ease-in;
     margin: 0 auto;
-    z-index: 0;
+    z-index: 1;
     margin-bottom: 296px;
     text-align: center;
     padding-top: 0.9rem;
     font-weight: bold;
     font-size: 24pt;
     display: none;
+}
+
+.winFlag a {
+    text-decoration: none;
+    color: #fff;
+    line-height: 2;
 }
 
 @keyframes winFlag {
@@ -40,65 +320,8 @@ body {
     }
 }
 
-.lvlUp {
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 29%;
-    z-index: 1;
-}
-
-.threeD-link {
-    display: block;
-    padding: 10px 20px;
-    font-size: 1.5em;
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #4CAF50;
-    border-radius: 5px;
-    box-shadow: 0 5px #3e8e41;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-    animation: buttonLvl 4s ease-in;
-    display: none;
-}
-
-.threeD-link:active {
-    top: 5px;
-    box-shadow: 0 2px #3e8e41;
-}
-
-.threeD-link:hover {
-    background-color: #45a049;
-}
-
-.threeD-link:focus {
-    outline: none;
-}
-
-@keyframes buttonLvl {
-    0% {
-        top: -30px;
-        opacity: 0.3;
-        right: -100px;
-    }
-
-    50% {
-        opacity: 0.7;
-        top: 170px;
-    }
-
-    100% {
-        top: 0px;
-        opacity: 1;
-        right: 0px;
-    }
-}
-
 .welcome {
-    width: 1000px;
+    width: 170px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,16 +338,16 @@ body {
 
 .title {
     position: absolute;
-    font-size: 6em;
+    font-size: 2em;
     color: #FFD700;
-    /* צבע כותרת דמוי מריו */
-    text-transform: uppercase;
+    text-transform: capitalize;
     text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7);
-    /* צל של הטקסט */
     transform: perspective(300px) rotateY(15deg);
     /* אפקט תלת מימד */
     margin-bottom: 25rem;
 }
+
+
 
 .fade {
     animation: title 2s ease-in;
@@ -140,6 +363,8 @@ body {
     }
 }
 
+
+/* settings styling */
 .settingsBtnBox {
     width: 1024px;
     height: 576px;
@@ -217,19 +442,15 @@ img[alt='SpacebarKey'] {
     height: 20px;
 }
 
-.stars {
-    position: absolute;
-    width: 1054px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.stars img {
-    width: 60px;
+.aboutBox {
+    width: 50%;
+    margin: 0 auto;
+    line-height: 1.5;
 
 }
 
+
+/* map styling */
 .settingsBtnBox img[alt='road Map'] {
     width: 50px;
     height: 30px;
@@ -267,7 +488,7 @@ img[alt='SpacebarKey'] {
 
 .map a {
     position: absolute;
-    z-index: 4;
+    z-index: 3;
     font-size: 22pt;
     color: #fff;
     padding: 17px;
@@ -346,4 +567,40 @@ img[alt='SpacebarKey'] {
     position: absolute;
     left: 750px;
     bottom: 480px;
+}
+
+/* map overlay styling */
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #cccccca2;
+    position: absolute;
+    z-index: 4;
+}
+
+.overlay .map-info {
+    width: 50%;
+    height: 50%;
+    margin: 6rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.map-info h1 {
+    color: #ffc400;
+    font-weight: normal;
+    font-size: 20pt;
+    letter-spacing: 2px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.map-info p {
+    color: #070707;
+    font-weight: bold;
+    font-size: 15pt;
 }

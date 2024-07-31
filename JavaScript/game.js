@@ -1,9 +1,14 @@
-let platform = document.images.namedItem = './gallery/Platform.png'
-let background = document.images.namedItem = './gallery/Background-Game.png'
-let winingBox = document.images.namedItem = './gallery/Mario-Wining-Box.jpg'
+let platform = document.images.namedItem = './gallery/Platform.png' // the regular platform
+let background = document.images.namedItem = './gallery/Background-Game.png' // the game background
+let winingBox = document.images.namedItem = './gallery/Mario-Wining-Box.jpg' // mario wining box
+let shortPlatform = document.images.namedItem = './gallery/shortPlatform.png' // short platform
+let miniPlatform = document.images.namedItem = './gallery/miniPlatform.png' // mini platform
+let tree = document.images.namedItem = './gallery/tree.png' // mini platform
+let endText = document.images.namedItem = './gallery/endText.png' // mini platform
+let man = document.images.namedItem = './gallery/man.png' // mini platform
 
 
-console.log(platform);
+
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext('2d');
 let winFlag = document.querySelector('.winFlag');
@@ -13,6 +18,95 @@ canvas.width = 1024;
 canvas.height = 576;
 
 const gravity = 0.5;
+
+
+
+
+
+
+let user = {
+    name: localStorage.getItem("username"),
+    password: localStorage.getItem("password"),
+}
+let checkbox = document.getElementById("checkbox");
+
+
+if (user.name == undefined && user.password == undefined) {
+    document.getElementById("login").style.display = "none"
+    document.getElementById("signup").style.display = "block"
+} else if (user.name != '' && user.password != '') {
+    document.getElementById("signup").classList.add('old')
+    document.getElementById("login").classList.add('new')
+    setTimeout(() => {
+        document.getElementById("signup").style.display = "none"
+    }, 1700)
+}
+if (localStorage.getItem("rememberMe") == "true" && user.name != '' && user.password != '') {
+    document.getElementById("login").style.display = "none"
+    document.getElementById("signup").style.display = "none"
+    canvas.style.display = "block";
+    document.querySelector('.title').innerHTML = user.name;
+    document.querySelector('.title').style.display = 'block';
+    document.getElementById("settingsBox").style.display = "block";
+    document.getElementById("distance").style.display = "flex"
+}
+
+
+
+function signup() {
+    let username = document.getElementById("name").value
+    let password = document.getElementById("pass").value
+    let email = document.getElementById("mail").value
+    if (username != "" && password.length > 7) {
+        localStorage.setItem("username", username)
+        localStorage.setItem("password", password)
+        alert('Signup successful. Please login.')
+    } else {
+        alert("Please provide a valid username and password (minimum 8 characters).")
+    }
+
+    if (email != "" && email.includes("@")) {
+        localStorage.setItem("email", email)
+    }
+
+}
+
+function login() {
+    let username = document.getElementById("login-name").value
+    let password = document.getElementById("login-pass").value
+
+    console.log(user.name + " " + user.password);
+
+    if (username == localStorage.getItem("username") && password == localStorage.getItem("password")) {
+
+        document.getElementById("login").style.display = "none"
+        canvas.style.display = "block";
+        document.querySelector('.title').innerHTML = username;
+        document.querySelector('.title').style.display = 'block';
+        document.getElementById("settingsBox").style.display = "block";
+        document.getElementById("distance").style.display = "flex"
+    } else {
+        alert("username or password are incorrect")
+    }
+
+    if (checkbox.checked === true && username == localStorage.getItem("username") && password == localStorage.getItem("password")) {
+        checkbox = true
+        localStorage.setItem("rememberMe", checkbox)
+
+    }
+
+
+    console.log(checkbox);
+}
+
+
+
+
+
+
+
+
+
 
 
 function openSettings() {
@@ -55,11 +149,11 @@ class Player {
         this.width = 30
         this.height = 30
         this.jumpCount = 0;
-        this.maxJumps = 2;
+        this.maxJumps = 20;
     }
 
     draw() {
-        c.fillStyle = "red"
+        c.fillStyle = 'red'
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -78,10 +172,9 @@ class Player {
             this.velocity.y = -10; // Jump force
             this.jumpCount++;
             document.querySelector('.welcome').style.display = 'none'
-        } else if (this.position.y > 435) {
+        } else if (this.position.y > 435 && user.name == localStorage.getItem("username") && user.password == localStorage.getItem("password")) {
             document.querySelector('.welcome').style.display = 'block'
             this.jumpCount = 0;
-            console.log('false jump');
         }
     }
 }
@@ -95,8 +188,6 @@ class Platform {
         this.image = image
         this.width = image.width
         this.height = image.height
-
-
     }
 
     draw() {
@@ -104,8 +195,17 @@ class Platform {
     }
 }
 
+
+// the image creation
 let platformImage = createImage(platform)
+let shortPlatformImage = createImage(shortPlatform)
+let miniPlatformImage = createImage(miniPlatform)
 let winingBoxImage = createImage(winingBox)
+let treeImage = createImage(tree)
+let endTextImage = createImage(endText)
+let manImage = createImage(man)
+
+
 class GenricObject {
     constructor({ x, y, image }) {
         this.position = {
@@ -135,7 +235,7 @@ function createImage(imageSrc) {
     return image
 }
 
-console.log(platformImage);
+
 
 let player = new Player()
 let platforms = [
@@ -149,11 +249,33 @@ let platforms = [
 
     new Platform({ x: platformImage.width * 4 + 500, y: 470, image: platformImage }),
 
-    new Platform({ x: platformImage.width * 5 + 500, y: 470, image: platformImage }),
+    new Platform({ x: platformImage.width * 5 + 500, y: 300, image: shortPlatformImage }),
 
-    new Platform({ x: platformImage.width * 5 + 370, y: 350, image: winingBoxImage }),
+    new Platform({ x: platformImage.width * 6 + 300, y: 300, image: shortPlatformImage }),
 
-    new Platform({ x: platformImage.width * 5 + 500, y: 350, image: platformImage })
+    new Platform({ x: platformImage.width * 6 + 600, y: 470, image: miniPlatformImage }),
+
+    new Platform({ x: platformImage.width * 6 + 700, y: 470, image: miniPlatformImage }),
+
+    new Platform({ x: platformImage.width * 7 + 600, y: 470, image: miniPlatformImage }),
+
+    new Platform({ x: platformImage.width * 8 + 560, y: 470, image: miniPlatformImage }),
+
+    new Platform({ x: platformImage.width * 8 + 700, y: 470, image: miniPlatformImage }),
+
+    new Platform({ x: platformImage.width * 9 + 735, y: 222, image: winingBoxImage }),
+
+    new Platform({ x: platformImage.width * 10 + 530, y: 222, image: treeImage }),
+
+    new Platform({ x: platformImage.width * 10 + 630, y: 222, image: treeImage }),
+
+    new Platform({ x: platformImage.width * 10 + 730, y: 222, image: treeImage }),
+
+    new Platform({ x: platformImage.width * 9 + 930, y: 210, image: endTextImage }),
+
+    new Platform({ x: platformImage.width * 9 + 870, y: 300, image: manImage }),
+
+    new Platform({ x: platformImage.width * 9 + 500, y: 350, image: platformImage })
 ]
 const keys = {
     right: {
@@ -167,9 +289,12 @@ const keys = {
     }
 
 }
-player.update()
+
 
 let scrollOffSet = 0
+
+
+
 
 function animate() {
     requestAnimationFrame(animate)
@@ -219,38 +344,51 @@ function animate() {
         }
     })
 
+    /* distance made */
+    let distance = document.getElementById("distance-counter");
+    distance.innerHTML = `${scrollOffSet} <span class="orange">M</span>`
 
     //  נקודת ניצחון
-    if (scrollOffSet > 2000) {
+    if (scrollOffSet > 4000) {
         player.position.x = 350
         player.position.y = platform.height
         keys.right.pressed = false
         removeEventListener('keydown', (keys))
         document.querySelector(".winFlag").style.display = 'block'
-        winButton.style.display = 'block'
         document.querySelector('.welcome').style.display = 'none'
         document.querySelector('.title').classList.add('fade')
         setTimeout(function () {
             document.querySelector('.title').style.display = 'none'
         }, 2000)
+        document.getElementById("last-attempt").style.display = "none"
+        distance.innerHTML = ""
+        localStorage.setItem("Distance", scrollOffSet)
     }
-
 
 
     // נקודת הפסד
     if (player.position.y > canvas.height) {
         init()
     }
+
+
+    if (localStorage.getItem("Distance") != undefined) {
+        document.getElementById("last-attempt").innerHTML = `<span class="green">Last Attempt:</span> ${localStorage.getItem("Distance")} <span class="green">M</span>`
+    }
 }
 let scrollOffSetLeft = 0
+
+animate()
 setTimeout(() => {
-    animate()
-}, 1000)
+    init()
+}, 80)
 
 
 
 
 function init() {
+    localStorage.setItem("Distance", scrollOffSet)
+    document.querySelector('.welcome').style.display = 'none'
     platformImage = createImage(platform)
 
     class GenricObject {
@@ -282,8 +420,6 @@ function init() {
         return image
     }
 
-    console.log(platformImage);
-    console.log(platforms[1].y);
     player = new Player()
     platforms = [
         new Platform({ x: -3, y: 470, image: platformImage }),
@@ -296,11 +432,33 @@ function init() {
 
         new Platform({ x: platformImage.width * 4 + 500, y: 470, image: platformImage }),
 
-        new Platform({ x: platformImage.width * 5 + 500, y: 470, image: platformImage }),
+        new Platform({ x: platformImage.width * 5 + 500, y: 300, image: shortPlatformImage }),
 
-        new Platform({ x: platformImage.width * 5 + 370, y: 350, image: winingBoxImage }),
+        new Platform({ x: platformImage.width * 6 + 300, y: 300, image: shortPlatformImage }),
 
-        new Platform({ x: platformImage.width * 5 + 500, y: 350, image: platformImage })
+        new Platform({ x: platformImage.width * 6 + 600, y: 470, image: miniPlatformImage }),
+
+        new Platform({ x: platformImage.width * 6 + 700, y: 470, image: miniPlatformImage }),
+
+        new Platform({ x: platformImage.width * 7 + 600, y: 470, image: miniPlatformImage }),
+
+        new Platform({ x: platformImage.width * 8 + 560, y: 470, image: miniPlatformImage }),
+
+        new Platform({ x: platformImage.width * 8 + 700, y: 470, image: miniPlatformImage }),
+
+        new Platform({ x: platformImage.width * 9 + 735, y: 222, image: winingBoxImage }),
+
+        new Platform({ x: platformImage.width * 10 + 530, y: 222, image: treeImage }),
+
+        new Platform({ x: platformImage.width * 10 + 630, y: 222, image: treeImage }),
+
+        new Platform({ x: platformImage.width * 10 + 730, y: 222, image: treeImage }),
+
+        new Platform({ x: platformImage.width * 9 + 930, y: 210, image: endTextImage }),
+
+        new Platform({ x: platformImage.width * 9 + 870, y: 300, image: manImage }),
+
+        new Platform({ x: platformImage.width * 9 + 500, y: 350, image: platformImage })
     ]
 
     scrollOffSet = 0
@@ -364,4 +522,7 @@ addEventListener('keyup', ({ key }) => {
     }
 })
 
-console.log(platform.height);
+
+
+
+
