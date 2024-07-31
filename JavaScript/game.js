@@ -149,7 +149,7 @@ class Player {
         this.width = 30
         this.height = 30
         this.jumpCount = 0;
-        this.maxJumps = 20;
+        this.maxJumps = 2;
     }
 
     draw() {
