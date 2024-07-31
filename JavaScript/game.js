@@ -380,7 +380,7 @@ let scrollOffSetLeft = 0
 animate()
 setTimeout(() => {
     init()
-}, 80)
+}, 200)
 
 
 
