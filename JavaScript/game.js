@@ -75,7 +75,7 @@ function login() {
     let username = document.getElementById("login-name").value
     let password = document.getElementById("login-pass").value
 
-    console.log(user.name + " " + user.password);
+
 
     if (username == localStorage.getItem("username") && password == localStorage.getItem("password")) {
 
@@ -96,7 +96,6 @@ function login() {
     }
 
 
-    console.log(checkbox);
 }
 
 
@@ -475,22 +474,18 @@ addEventListener('keydown', ({ key }) => {
 
     switch (key) {
         case 'a':
-            console.log('Left');
             keys.left.pressed = true
             scrollOffSetLeft--
             break;
         case 'd':
-            console.log('Right');
             keys.right.pressed = true
             scrollOffSetLeft++
             break;
         case ' ':
-            console.log('Up');
             keys.up.pressed = true
             player.jump();
             break;
         case 'w':
-            console.log('Up');
             keys.up.pressed = true
             player.jump();
             break;
