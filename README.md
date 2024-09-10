@@ -17,9 +17,9 @@ BoxGame is a 2D game where the player must guide a box to the finish line, simil
 
 - Controls:
 
-Movement: WASD or wasd
+- Movement: WSD or wsd
 
-- Jump: SpaceBar
+- Jump: SpaceBar / w
 
 ## About the Game:
 
